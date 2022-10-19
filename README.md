@@ -22,3 +22,5 @@ Run the test suite:
 ```bash
 composer test
 ```
+
+NB: Custom tests were mostly taken from [Nyholm/psr7](https://github.com/Nyholm/psr7). 
