@@ -1,0 +1,46 @@
+{
+    "name": "f3-factory/fatfree-psr7",
+    "type": "library",
+    "require": {
+        "psr/http-message": "^1.0",
+        "psr/http-factory": "^1.0",
+        "php-http/message-factory": "^1.0"
+    },
+    "license": "MIT",
+    "keywords": ["psr-7", "psr-17"],
+    "authors": [
+        {
+            "name": "ikkez",
+            "email": "ikkez0n3@gmail.com"
+        }
+    ],
+    "provide": {
+        "psr/http-message-implementation": "1.0",
+        "psr/http-factory-implementation": "1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "php-http/psr7-integration-tests": "dev-master",
+        "http-interop/http-factory-tests": "^0.9.0",
+        "devanych/psr-http-benchmark": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/devanych/psr-http-benchmark.git"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "F3\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\F3_PSR7\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}
