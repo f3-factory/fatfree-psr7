@@ -45,13 +45,9 @@ class Psr17Factory implements RequestFactoryInterface, ResponseFactoryInterface,
     }
 
     public function createStreamFromFile(string $filename, string $mode = 'r'): StreamInterface {
-        if (empty($filename))
-            throw new \RuntimeException('Path cannot be empty');
-        if (!\file_exists($filename))
-            throw new \RuntimeException('File does not exist');
-        if (empty($mode) || !\preg_match('/[rwxca]/', $mode))
-            throw new \RuntimeException('Invalid file mode');
-        $resource = \fopen($filename, $mode);
+        if (($resource = @\fopen($filename, $mode)) === false) {
+            throw new \RuntimeException('Unable to to open file');
+        }
         return new Stream($resource);
     }
 
@@ -59,7 +55,7 @@ class Psr17Factory implements RequestFactoryInterface, ResponseFactoryInterface,
         return new Stream($resource);
     }
 
-    public function createUploadedFile(StreamInterface $stream,int $size = NULL, int $error = \UPLOAD_ERR_OK, string $clientFilename = NULL, string $clientMediaType = NULL): UploadedFileInterface {
+    public function createUploadedFile(StreamInterface $stream, int $size = NULL, int $error = \UPLOAD_ERR_OK, string $clientFilename = NULL, string $clientMediaType = NULL): UploadedFileInterface {
         return new UploadedFile($stream, $size ?? $stream->getSize(), $error, $clientFilename, $clientMediaType);
     }
 
