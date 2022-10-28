@@ -62,17 +62,5 @@ class Request extends Message implements RequestInterface {
         return $new;
     }
 
-//    public static function fromHive(BaseHive $hive): static {
-//        $request = new static();
-//        foreach ($hive->HEADERS as $key => $value) {
-//            $request = $request->withHeader($key,
-//                array_map('trim',explode(',', $value)));
-//        }
-//        list(,$version) = explode('/', $hive->SERVER['SERVER_PROTOCOL']);
-//        return $request
-//            ->withUri(new Uri($hive->REALM))
-//            ->withProtocolVersion($version)
-//            ->withMethod($hive->VERB);
-//    }
 }
 
