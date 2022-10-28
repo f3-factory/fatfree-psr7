@@ -54,8 +54,6 @@ class Stream implements StreamInterface {
     public function getSize(): ?int {
         if ($this->size || !$this->resource)
             return $this->size;
-        if ($uri = $this->getUri())
-            \clearstatcache(true, $uri);
         $stats = \fstat($this->resource) ?? [];
         return $this->size = $stats['size'] ?? NULL;
     }
