@@ -45,7 +45,7 @@ class Psr17Factory implements RequestFactoryInterface, ResponseFactoryInterface,
     }
 
     public function createStreamFromFile(string $filename, string $mode = 'r'): StreamInterface {
-        if (($resource = @\fopen($filename, $mode)) === false) {
+        if (!$filename || ($resource = @\fopen($filename, $mode)) === false) {
             throw new \RuntimeException('Unable to to open file');
         }
         return new Stream($resource);

@@ -98,8 +98,8 @@ class Stream implements StreamInterface {
 
     public function isWritable(): bool {
         if ($this->writable === NULL) {
-            $mode=$this->getMetadata('mode');
-            $this->writable = str_contains($mode,'w') || str_contains($mode,'+') || str_contains($mode,'x') || str_contains($mode,'c') || str_contains($mode,'a');
+            $this->writable = ($mode=$this->getMetadata('mode'))
+                && (\str_contains($mode,'w') || \str_contains($mode,'+') || \str_contains($mode,'x') || \str_contains($mode,'c') || \str_contains($mode,'a'));
         }
         return $this->writable;
     }
@@ -115,8 +115,8 @@ class Stream implements StreamInterface {
 
     public function isReadable(): bool {
         if ($this->readable === NULL) {
-            $mode=$this->getMetadata('mode');
-            $this->readable = \str_contains($mode,'r') || \str_contains($mode,'+');
+            $this->readable = ($mode=$this->getMetadata('mode'))
+                && (\str_contains($mode,'r') || \str_contains($mode,'+'));
         }
         return $this->readable;
     }

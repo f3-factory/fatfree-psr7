@@ -56,7 +56,7 @@ class UriTest extends TestCase
         $this->assertSame($input, (string) $uri);
     }
 
-    public function getValidUris()
+    public static function getValidUris(): array
     {
         return [
             ['urn:path-rootless'],
@@ -97,7 +97,7 @@ class UriTest extends TestCase
         new Uri($invalidUri);
     }
 
-    public function getInvalidUris()
+    public static function getInvalidUris(): array
     {
         return [
             // parse_url() requires the host component which makes sense for http(s)
@@ -216,7 +216,7 @@ class UriTest extends TestCase
         $this->assertSame('0://0:0@0/0?0#0', (string) $uri);
     }
 
-    public function getResolveTestCases()
+    public static function getResolveTestCases(): array
     {
         return [
             [self::RFC3986_BASE, 'g:h',           'g:h'],
@@ -366,7 +366,7 @@ class UriTest extends TestCase
         $this->assertSame('', $uri->getAuthority());
     }
 
-    public function uriComponentsEncodingProvider()
+    public static function uriComponentsEncodingProvider(): array
     {
         $unreserved = 'a-zA-Z0-9.-_~!$&\'()*+,;=:@';
 

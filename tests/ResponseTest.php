@@ -232,7 +232,7 @@ class ResponseTest extends TestCase
         $this->assertSame($r, $r->withoutHeader('foo'));
     }
 
-    public function trimmedHeaderValues()
+    public static function trimmedHeaderValues(): array
     {
         return [
             [(new Response())->withHeaders(['OWS' => " \t \tFoo\t \t "])],

@@ -26,7 +26,7 @@ class UploadedFileTest extends TestCase
         }
     }
 
-    public function invalidErrorStatuses()
+    public static function invalidErrorStatuses(): array
     {
         return [
             'null' => [null],
@@ -87,7 +87,7 @@ class UploadedFileTest extends TestCase
         $this->assertEquals($stream->__toString(), file_get_contents($to));
     }
 
-    public function invalidMovePaths()
+    public static function invalidMovePaths(): array
     {
         return [
             'null' => [null],
@@ -144,7 +144,7 @@ class UploadedFileTest extends TestCase
         $upload->getStream();
     }
 
-    public function nonOkErrorStatus()
+    public static function nonOkErrorStatus(): array
     {
         return [
             'UPLOAD_ERR_INI_SIZE' => [UPLOAD_ERR_INI_SIZE],
