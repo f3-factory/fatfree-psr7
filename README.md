@@ -24,18 +24,3 @@ composer test
 ```
 
 NB: Custom tests were mostly taken from [Nyholm/psr7](https://github.com/Nyholm/psr7). 
-
-
-## Benchmarks
-
-Benchmarks done with `devanych/psr-http-benchmark` on php 8.0+.
-
-Test results (Intel Xeon Gold 6140 CPU @ 2.30GHz, 4 cores):
-
-| Runs: 50,000         | Guzzle    | HttpSoft  | Laminas   | Nyholm    | Slim      | Fatfree   |
-|----------------------|-----------|-----------|-----------|-----------|-----------|-----------|
-| Runs per second      | 18599     | 31938     | 22601     | 27999     | 18789     | 35200     |
-| Average time per run | 0.0538 ms | 0.0313 ms | 0.0442 ms | 0.0357 ms | 0.0532 ms | 0.0284 ms |
-| Total time           | 2.6882 s  | 1.5655 s  | 2.2122 s  | 1.7858 s  | 2.6611 s  | 1.4204 s  |
-
----
