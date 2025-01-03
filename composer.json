@@ -23,8 +23,15 @@
     "require-dev": {
         "phpunit/phpunit": "^9.6 || ^10.5 || ^11.5",
         "php-http/psr7-integration-tests": "1.*",
-        "http-interop/http-factory-tests": "^2.2.0"
+        "http-interop/http-factory-tests": "^2.2.0",
+        "devanych/psr-http-benchmark": "dev-master"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/devanych/psr-http-benchmark.git"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "F3\\": "src/"

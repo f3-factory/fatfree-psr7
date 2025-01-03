@@ -106,13 +106,13 @@ class RequestTest extends TestCase
 
     public function testGetRequestTarget()
     {
-        $r = (new Request())->withMethod('GET')->withUri( 'https://nyholm.tech');
+        $r = (new Request())->withMethod('GET')->withUri( 'https://fatfreeframework.com');
         $this->assertEquals('/', $r->getRequestTarget());
 
-        $r = (new Request())->withMethod('GET')->withUri( 'https://nyholm.tech/foo?bar=baz');
+        $r = (new Request())->withMethod('GET')->withUri( 'https://fatfreeframework.com/foo?bar=baz');
         $this->assertEquals('/foo?bar=baz', $r->getRequestTarget());
 
-        $r = (new Request())->withMethod('GET')->withUri( 'https://nyholm.tech?bar=baz');
+        $r = (new Request())->withMethod('GET')->withUri( 'https://fatfreeframework.com?bar=baz');
         $this->assertEquals('/?bar=baz', $r->getRequestTarget());
     }
 
@@ -183,16 +183,6 @@ class RequestTest extends TestCase
         $this->assertEquals('www.baz.com', $r2->getHeaderLine('Host'));
     }
 
-//    public function testAggregatesHeaders()
-//    {
-//        $r = (new Request())->withMethod('GET')->withUri( '')->withHeaders([
-//            'ZOO' => 'zoobar',
-//            'zoo' => ['foobar', 'zoobar'],
-//        ]);
-//        $this->assertEquals(['ZOO' => ['zoobar', 'foobar', 'zoobar']], $r->getHeaders());
-//        $this->assertEquals('zoobar, foobar, zoobar', $r->getHeaderLine('zoo'));
-//    }
-
     public function testSupportNumericHeaders()
     {
         $r = (new Request())->withMethod('GET')->withUri( '')->withHeaders([
@@ -232,20 +222,20 @@ class RequestTest extends TestCase
     public function testUpdateHostFromUri()
     {
         $request = (new Request())->withMethod('GET')->withUri( '/');
-        $request = $request->withUri(new Uri('https://nyholm.tech'));
-        $this->assertEquals('nyholm.tech', $request->getHeaderLine('Host'));
+        $request = $request->withUri(new Uri('https://fatfreeframework.com'));
+        $this->assertEquals('fatfreeframework.com', $request->getHeaderLine('Host'));
 
         $request = (new Request())->withMethod('GET')->withUri( 'https://example.com/');
         $this->assertEquals('example.com', $request->getHeaderLine('Host'));
-        $request = $request->withUri(new Uri('https://nyholm.tech'));
-        $this->assertEquals('nyholm.tech', $request->getHeaderLine('Host'));
+        $request = $request->withUri(new Uri('https://fatfreeframework.com'));
+        $this->assertEquals('fatfreeframework.com', $request->getHeaderLine('Host'));
 
         $request = (new Request())->withMethod('GET')->withUri( '/');
-        $request = $request->withUri(new Uri('https://nyholm.tech:8080'));
-        $this->assertEquals('nyholm.tech:8080', $request->getHeaderLine('Host'));
+        $request = $request->withUri(new Uri('https://fatfreeframework.com:8080'));
+        $this->assertEquals('fatfreeframework.com:8080', $request->getHeaderLine('Host'));
 
         $request = (new Request())->withMethod('GET')->withUri( '/');
-        $request = $request->withUri(new Uri('https://nyholm.tech:443'));
-        $this->assertEquals('nyholm.tech', $request->getHeaderLine('Host'));
+        $request = $request->withUri(new Uri('https://fatfreeframework.com:443'));
+        $this->assertEquals('fatfreeframework.com', $request->getHeaderLine('Host'));
     }
 }
