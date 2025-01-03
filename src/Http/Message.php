@@ -6,11 +6,11 @@ use Psr\Http\Message\{MessageInterface,StreamInterface};
 
 class Message implements MessageInterface {
 
-    protected ?string $version = '1.1';
+    protected string $version = '1.1';
     protected array $headers = [];
     protected ?StreamInterface $body = NULL;
 
-    public function getProtocolVersion(): ?string {
+    public function getProtocolVersion(): string {
         return $this->version;
     }
 
@@ -106,7 +106,7 @@ class Message implements MessageInterface {
         return $new;
     }
 
-    public function getBody(): ?StreamInterface {
+    public function getBody(): StreamInterface {
         return $this->body;
     }
 

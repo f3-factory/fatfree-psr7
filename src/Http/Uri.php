@@ -49,7 +49,7 @@ class Uri implements UriInterface {
     }
 
     public function getUserInfo(): string {
-        return $this->user.($this->pass!==''?':'.$this->pass:'');
+        return ($this->user).($this->pass!==''?':'.($this->pass):'');
     }
 
     public function getHost(): string {
@@ -64,7 +64,10 @@ class Uri implements UriInterface {
         } === $this->port ? null : $this->port;
     }
 
-    public function getPath(): string {
+    public function getPath(bool $trim=true): string {
+        if ($trim && $this->host && \str_starts_with($this->path, '/')) {
+            return '/'.\ltrim($this->path, '/');
+        }
         return $this->path;
     }
 
@@ -86,8 +89,11 @@ class Uri implements UriInterface {
 
     public function withUserInfo($user, $password = NULL): Uri {
         $new = clone $this;
-        $new->user = $user;
+        $pattern = '/[^%a-zA-Z0-9_\-.~!$&\'()*+,;=]+|%(?![A-Fa-f0-9]{2})/';
+        $new->user = \preg_match($pattern, $user) ? \rawurlencode($user) : $user;
         $new->pass = (string) $password;
+        if (\preg_match($pattern, $new->pass))
+            $new->pass = \rawurlencode($new->pass);
         return $new;
     }
 
@@ -131,10 +137,10 @@ class Uri implements UriInterface {
         return $new;
     }
 
-    public function __toString() {
+    public function __toString(): string {
         return (($s=$this->getScheme()) !== '' ? $s.':' : '').
             (($a=$this->getAuthority()) !== '' ? '//'.$a : '').
-            (($p=$this->getPath()) !=='' ? (
+            (($p=$this->getPath(false)) !=='' ? (
                 (!($abs=\str_starts_with($p, '/')) && $a !== '' ? '/' : '').
                 ($abs && $a === '' ? '/'.\ltrim($p, '/') : $p)
             ) : '').
