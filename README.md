@@ -10,7 +10,7 @@ composer require f3-factory/fatfree-psr7
 
 ## Usage
 
-The package includes a [PSR-17](https://www.php-fig.org/psr/psr-17/) factory and also supports [HTTPlug](https://docs.php-http.org/en/latest/index.html).
+The package includes a [PSR-17](https://www.php-fig.org/psr/psr-17/) factory.
 
 Use these factories according to specs to create Request, Response, Uri, Stream objects.
 
